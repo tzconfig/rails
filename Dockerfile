@@ -21,6 +21,9 @@ RUN bundle config set --global path '/bundle'
 ENV PATH="/bundle/ruby/$RUBY_VERSION/bin:${PATH}"
 
 # Install Rails
+RUN gem sources
+RUN gem sources --remove https://rubygems.org/
+RUN gem sources -a https://mirrors.aliyun.com/rubygems/
 RUN gem install rails
 
 # Ensure binding is always 0.0.0.0, even in development, to access server from outside container
